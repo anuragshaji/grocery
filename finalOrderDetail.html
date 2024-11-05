@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+	<title>Products Page</title> 
+	<meta charset="utf-8"> 
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href= 
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> 
+	<script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"> 
+	</script> 
+	<script src= 
+"https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"> 
+	</script> 
+	<script src= 
+"https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> 
+	</script> 
+</head> 
+<body> 
+    <!-- header -->
+    <header> 
+		<div class="container text-center" > 
+			<h1 style="color: green">Grocery Store Management System</h1> 
+		</div> 
+	</header> 
+    <hr>
+	<!-- <br/>  -->
+    <div class="container"> 
+		<div class="row"> 
+			<div class="col-sm-3"> 
+				<div class="text-center"> 
+					<a href="{{url_for('HomePage')}}">Home</a> 
+				</div> 
+			</div> 
+			<div class="col-sm-3"> 
+				<div class="text-center"> 
+					<a href="{{url_for('ProductsPage')}}">Shop</a>
+				</div> 
+			</div> 
+			<div class="col-sm-3"> 
+				<div class="text-center"> 
+					<a href="{{url_for('OrderPage')}}">Orders</a> 
+				</div> 
+			</div> 
+			<div class="col-sm-3"> 
+				<div class="text-center"> 
+					<a href="{{url_for('logout')}}">Logout</a> 
+				</div> 
+			</div> 
+		</div> 
+	</div> 
+    <hr>
+
+
+
+    <!-- Products Table -->
+
+    <div>
+        <div class="text-center">
+            <h1>Order Details</h1>
+        </div>
+        
+        <div class="text-center">
+            <table>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order Date</th>
+                    <th>Name</th>
+                    <th>Total Price</th>
+                </tr>
+
+                {% for row in finalOrdDetail %}
+                    <tr>
+                        {% for data in row %}
+                            <td>{{row[data]}}</td>
+
+                        {% endfor %}
+                        
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br> 
+
+    </div>
+    
+
+    <!-- place order button -->
+    <div>
+        <form action="/invoice/{{finalOrdDetail[0]['order_id']}}" method="post" >
+            <button type="submit">Get Your Invoice</button>
+        </form>
+        
+    </div>
+
+
+	
+</body> 
+</html> 
+
+
+
+
